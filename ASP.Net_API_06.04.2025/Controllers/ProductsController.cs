@@ -93,5 +93,47 @@ namespace ASP.Net_API_06._04._2025.Controllers
             }
         }
 
+        [HttpPut]
+        public async Task<ActionResult<ProductDto>> Update([FromBody] ProductDto dto)
+        {
+            try
+            {
+                await _productService.UpdateAsync(dto);
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("update")]
+        public async Task<IActionResult> UpdatePost([FromBody] ProductDto dto)
+        {
+            try
+            {
+                await _productService.UpdateAsync(dto);
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ProductDto>> Delete(Guid id)
+        {
+            try
+            {
+                await _productService.DeleteAsync(id);
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+        }
+
     }
 }
